@@ -1,0 +1,30 @@
+<form hx-put="/contact/{{contact.contact_id}}" hx-target="this" hx-swap="outerHTML">
+    <div class="mb-2">
+        <label class="form-label">First Name:</label> 
+        <input class="form-control" name="first_name" type="text" value="{{ contact.first_name }}">
+        <label class="form-label">Last Name:</label> 
+        <input class="form-control" name="last_name" type="text" value="{{contact.last_name}}">
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Email:</label>
+        <input class="form-control" name="email" type="email" value="{{ contact.email }}">
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Address:</label>
+        <input class="form-control" name="address" type="text" value="{{contact.address}}">
+    </div>
+    <div class="mb-2">
+        <label class="form-label">Phone:</label>
+        <input class="form-control" name="phone" type="tel" value="{{ contact.phone }}">
+    </div>
+    <div class="p-2">
+        <button class="btn btn-primary" type="submit">Save</button>
+
+        {# If we have a contact to display, do that. Otherwise go back to the contact list #}
+        {% if contact.contact_id|length > 0 %}
+            <button class="btn btn-secondary" hx-get="/contact/{{contact.contact_id}}"">Cancel</button>
+        {% else %}
+            <button class="btn btn-secondary" hx-get="/contacts"">Cancel</button>
+        {% endif %}
+    </div>
+</form>

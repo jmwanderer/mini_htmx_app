@@ -1,0 +1,22 @@
+<div hx-target="this" hx-swap="outerHTML">
+    <button type="button" class="btn" hx-get="/contacts">
+        <i class="material-symbols-outlined icon-align">arrow_back</i>
+    </button>
+    <div class="ms-2 p-2 bg-light" style="width: fit-content;">
+    <div class="mb-1">
+        Contact: {{contact.first_name}} {{contact.last_name}}
+    </div>
+    <div class="mb-1">
+        Email: {{contact.email}}
+    </div>
+    <div class="mb-1">
+        Address: {{contact.address}}
+    </div>
+   <div class="mb-1">
+        Phone: {{contact.phone}}
+    </div>
+</div>
+    <button class="btn btn-primary mt-2" hx-get="/contact/{{contact.contact_id}}/edit">Edit</button>
+    <button class="btn btn-secondary mt-2" hx-delete="/contact/{{contact.contact_id}}" 
+                         hx-confirm="Delete Contact {{contact.first_name}} {{contact.last_name}}?">Delete</button>
+</div>
