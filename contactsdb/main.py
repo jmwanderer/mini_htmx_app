@@ -27,8 +27,7 @@ def create_contact_form():
     """
     Produce an empty form for a contact
     """
-    if flask.request.method == "GET":
-        return flask.render_template("contact_form.html", contact=models.Contact())
+    return flask.render_template("contact_form.html", contact=models.Contact())
 
 @main_bp.route("/contact/<contact_id>/edit")
 def edit_contact_form(contact_id):

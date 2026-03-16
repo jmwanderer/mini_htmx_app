@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Populate contact database with fake data
 """

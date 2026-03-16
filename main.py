@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Run a debug instance with the flask server on 8080
 """

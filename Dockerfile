@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV PORT=8080
+ENV DB_PATH=${WORKDIR}
 
 CMD gunicorn contactsdb:app \
     --bind 0.0.0.0:${PORT}
