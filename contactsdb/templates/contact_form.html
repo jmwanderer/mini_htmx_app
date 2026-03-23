@@ -3,8 +3,7 @@
         hx-put="/contacts/{{contact.contact_id}}" 
     {% else %}
         hx-post="/contacts/" 
-    {% endif %}
-    hx-target="this" hx-swap="outerHTML">
+    {% endif %}>
     <div class="mb-2">
         <label class="form-label">First Name:</label> 
         <input class="form-control" name="first_name" type="text" value="{{ contact.first_name }}">
