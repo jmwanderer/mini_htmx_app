@@ -11,7 +11,7 @@ import contactsdb.models as models
 main_bp = flask.Blueprint("contacts", __name__)
 
 @main_bp.route("/")
-def hello_world():
+def top_view():
     """Top level view."""
     return flask.render_template("top.html")
 
@@ -29,7 +29,7 @@ def create_contact_form():
     """
     return flask.render_template("contact_form.html", contact=models.Contact())
 
-@main_bp.route("/contact/<contact_id>/edit")
+@main_bp.route("/contacts/<contact_id>/edit")
 def edit_contact_form(contact_id):
     """
     Produce a populated form for a contact
@@ -43,25 +43,25 @@ def edit_contact_form(contact_id):
 
     return flask.render_template("contact_form.html", contact=contact)
 
-@main_bp.route("/contact/", methods=["PUT"])
+@main_bp.route("/contacts/", methods=["POST"])
 def new_contact():
     """Create a new contact """
     contact = models.Contact(
-        flask.request.form["first_name"],
-        flask.request.form["last_name"],
-        flask.request.form["email"],
-        flask.request.form["address"],
-        flask.request.form["phone"],
+        flask.request.form["first_name"].strip(),
+        flask.request.form["last_name"].strip(),
+        flask.request.form["email"].strip(),
+        flask.request.form["address"].strip(),
+        flask.request.form["phone"].strip(),
     )
     if not contact.isValid():
-        # don't allow to save
+        # don't allow to save with empty fields
         return flask.render_template("contact_form.html", contact=contact)
 
     db = contactsdb.get_db()
     db.add_contact(contact)
     return flask.render_template("contact_show.html", contact=contact)
 
-@main_bp.route("/contact/<contact_id>", methods=["GET", "PUT", "DELETE"])
+@main_bp.route("/contacts/<contact_id>", methods=["GET", "PUT", "DELETE"])
 def access_contact(contact_id):
     """ Show, update, or delete a contact"""
     db = contactsdb.get_db()
@@ -70,18 +70,18 @@ def access_contact(contact_id):
         return show_contact_list()
 
     contact = db.read_contact(contact_id)
-    # If not found, refresh list
+    # If not found, refresh the contactlist
     if contact.isNull():
-        # don't allow to save
         return show_contact_list()
 
     if flask.request.method == "PUT":
-        contact.first_name = flask.request.form["first_name"]
-        contact.last_name = flask.request.form["last_name"]
-        contact.email = flask.request.form["email"]
-        contact.address = flask.request.form["address"]
-        contact.phone = flask.request.form["phone"]
+        contact.first_name = flask.request.form["first_name"].strip()
+        contact.last_name = flask.request.form["last_name"].strip()
+        contact.email = flask.request.form["email"].strip()
+        contact.address = flask.request.form["address"].strip()
+        contact.phone = flask.request.form["phone"].strip()
         if not contact.isValid():
+            # Don't allow a save of empty fields
             return flask.render_template("contact_form.html", contact=contact)
         db.update_contact(contact);
 

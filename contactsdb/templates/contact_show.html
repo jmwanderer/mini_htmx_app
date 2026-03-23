@@ -16,7 +16,7 @@
         Phone: {{contact.phone}}
     </div>
 </div>
-    <button class="btn btn-primary mt-2" hx-get="/contact/{{contact.contact_id}}/edit">Edit</button>
-    <button class="btn btn-secondary mt-2" hx-delete="/contact/{{contact.contact_id}}" 
+    <button class="btn btn-primary mt-2" hx-get="/contacts/{{contact.contact_id}}/edit">Edit</button>
+    <button class="btn btn-secondary mt-2" hx-delete="/contacts/{{contact.contact_id}}" 
                          hx-confirm="Delete Contact {{contact.first_name}} {{contact.last_name}}?">Delete</button>
 </div>

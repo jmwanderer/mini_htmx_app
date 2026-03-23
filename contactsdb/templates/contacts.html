@@ -1,4 +1,4 @@
-<button hx-get="/create-contact" hx-target="#content" class="btn btn-primary d-flex align-items-center mb-1">
+<button hx-get="/create-contact" class="btn btn-primary d-flex align-items-center mb-1">
     <i class="material-symbols-outlined">Add</i>
     Create contact</button>
 <table class="table table-hover">
@@ -8,7 +8,7 @@
         <th>Phone number</th>
     </tr>
     {% for contact in contacts %}
-        <tr hx-get="/contact/{{contact.contact_id}}">
+        <tr hx-get="/contacts/{{contact.contact_id}}">
             <td>{{ contact.first_name }} {{ contact.last_name }}</td>
             <td>{{ contact.email }}</td>
             <td>{{ contact.phone }}</td>
