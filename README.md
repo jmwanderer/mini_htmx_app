@@ -2,8 +2,7 @@
 A tiny Flask based web app using HTMX
 
 This app is meant to be a small single pane app using HTMX to implement the UI.
-It supports a very simple database on contacts. The goal is a minimal functional application
-to explore using HTMX.
+It supports a very simple database of people contacts. The goal is a minimal functional application to explore using HTMX.
 
 ## Run Locally
 
@@ -43,6 +42,8 @@ Open [http://localhost:8080](http://localhost:8080)
 
 
 ## Run with Docker
+
+Using Docker is a great way to run apps more safely in relative isolation.
 
 ### Build Image
 To build an image named contacts:
