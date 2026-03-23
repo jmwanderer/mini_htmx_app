@@ -53,12 +53,18 @@ docker build -t contacts .
 ### Create Container
 To run in a container named contacts:
 ```
-docker create --name contacts -P 8080:8080 contacts
+docker create --name contacts -p 8080:8080 contacts
 ```
 
 ### Start
 ```
 docker start -a contacts
+```
+
+### Populate the database 
+Add entries with fake data by running:
+```
+docker exec -it contacts ./pop_db.py 20
 ```
 
 ### Stop
